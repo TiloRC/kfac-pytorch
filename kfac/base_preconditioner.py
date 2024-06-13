@@ -441,8 +441,8 @@ class BaseKFACPreconditioner:
         input_: list[torch.Tensor],
     ) -> None:
         """Hook for saving the input during the forward pass of a module."""
-        if not module.training:
-            return
+        #if not module.training:
+        #    return
         if self.steps % self.factor_update_steps == 0:
             name, layer = self._layers[module]
             layer.save_layer_input(input_)
@@ -464,8 +464,8 @@ class BaseKFACPreconditioner:
         grad_output: tuple[torch.Tensor, ...] | torch.Tensor,
     ) -> None:
         """Hook for saving the gradient w.r.t. output in the backward pass."""
-        if not module.training:
-            return
+        #if not module.training:
+        #    return
         if self.steps % self.factor_update_steps == 0:
             name, layer = self._layers[module]
             if isinstance(grad_output, torch.Tensor):
